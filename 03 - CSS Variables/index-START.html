@@ -21,6 +21,17 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
+    :root {
+      --spacing: 10px;
+      --blur: 10px;
+      --base: #ffc600;
+    }
+
+    img {
+      filter: blur(var(--blur));
+      padding: var(--spacing);
+      background: var(--base);
+    }
 
     /*
       misc styles, nothing to do with CSS variables
@@ -45,6 +56,15 @@
   </style>
 
   <script>
+    const handleInput = (e) => {
+      const root = document.documentElement;
+      const propertyValue = e.target.value[0] === '#' ? e.target.value : `${e.target.value}px`;
+      root.style.setProperty(`--${e.target.id}`, propertyValue);
+    }
+
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => input.addEventListener('input', handleInput));
+
   </script>
 
 </body>
